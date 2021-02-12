@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "income-expense-app-3345e": {
+      "hosting": {
+        "ingresoEgresoApp": [
+          "income-expense-app-3345e"
+        ]
+      }
+    }
+  }
+}
