@@ -17,6 +17,7 @@ import { User } from './user.model';
 })
 export class AuthService {
 
+  private user: User;
   private userSubscription: Subscription = new Subscription();
 
   constructor(private afAuth: AngularFireAuth,
@@ -34,8 +35,11 @@ export class AuthService {
           .subscribe((userObj: User) => {
             const newUser = new User(userObj);
             this.store.dispatch(new SetUserAction(newUser));
+            this.user = newUser;
+            console.log(newUser);
           });
       } else {
+        this.user = null;
         this.userSubscription.unsubscribe();
       }
     });
@@ -96,6 +100,11 @@ export class AuthService {
                 if(fbUser == null) this.router.navigate(['/login']);
                 return fbUser != null;
               }));
+  }
+
+  // Rompre la relación (objetos pasados por referencia de memoria)
+  getUser(): User {
+    return { ...this.user };
   }
 
 }
