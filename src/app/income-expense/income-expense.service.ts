@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
+import { AppState } from '../app.reducer';
 import { AuthService } from '../auth/auth.service';
+import { SetItemsAction } from './income-expense.actions';
 import { IncomeExpense } from './IncomeExpense.model';
 
 @Injectable({
@@ -9,8 +14,38 @@ import { IncomeExpense } from './IncomeExpense.model';
 })
 export class IncomeExpenseService {
 
+  incomeExpenseListenerSubs: Subscription = new Subscription();
+  incomeExpenseItemsSubs: Subscription = new Subscription();
+
   constructor(private afDB: AngularFirestore,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private store: Store<AppState>) { }
+
+  initIncomeExpenseListener() {
+    this.incomeExpenseListenerSubs = this.store.select('auth')
+      .pipe(filter(auth => auth.user != null))
+      .subscribe(auth => {
+        this.incomeExpenseItems(auth.user.uid);
+      });
+  }
+
+  private incomeExpenseItems(uid: string) {
+    this.incomeExpenseItemsSubs = this.afDB.collection(`${uid}/income-expense/items`)
+      .snapshotChanges()
+      .pipe(map(docData => {
+        return docData.map(doc => {
+          
+          return {
+            uid: doc.payload.doc.id,
+            ...doc.payload.doc.data() as Object
+          }
+
+        });
+      }))
+      .subscribe((collection: any) => {
+        this.store.dispatch(new SetItemsAction(collection));
+      });
+  }
 
   createIncomeExpense(incomeExpense: IncomeExpense) {
     const user = this.authService.getUser();
@@ -18,6 +53,11 @@ export class IncomeExpenseService {
     return this.afDB.doc(`${user.uid}/income-expense`)
       .collection('items')
       .add({ ...incomeExpense });
+  }
+
+  cancelSubscriptions() {
+    this.incomeExpenseListenerSubs.unsubscribe();
+    this.incomeExpenseItemsSubs.unsubscribe();
   }
 
 }
