@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 import { AppState } from '../../app.reducer';
+import { IncomeExpenseService } from '../income-expense.service';
 import { IncomeExpense } from '../IncomeExpense.model';
 
 @Component({
@@ -16,7 +18,8 @@ export class DetailComponent implements OnInit, OnDestroy {
   items: IncomeExpense[];
   subscription: Subscription = new Subscription();
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>,
+              private incomeExpenseService: IncomeExpenseService) { }
 
   ngOnInit(): void {
     this.subscription = this.store.select('incomeExpense')
@@ -30,8 +33,11 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  deleteItem(uid: string) {
-    console.log(uid);
+  deleteItem(item: IncomeExpense) {
+    this.incomeExpenseService.deleteIncomeExpense(item.uid)
+      .then(() => {
+        Swal.fire('Deleted', item.description, 'success');
+      })
   }
 
 }

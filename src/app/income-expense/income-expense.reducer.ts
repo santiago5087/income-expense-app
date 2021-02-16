@@ -20,7 +20,7 @@ export function incomeExpenseReducer(state=initState,
             return { ...item } 
           })
         ]
-      };
+      }
 
     case fromIncomeExpense.UNSET_ITEMS:
       return { items: [] }

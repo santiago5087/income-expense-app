@@ -55,6 +55,12 @@ export class IncomeExpenseService {
       .add({ ...incomeExpense });
   }
 
+  deleteIncomeExpense(uid: string) {
+    const user = this.authService.getUser();
+    return this.afDB.doc(`${user.uid}/income-expense/items/${uid}`)
+      .delete();
+  }
+
   cancelSubscriptions() {
     this.incomeExpenseListenerSubs.unsubscribe();
     this.incomeExpenseItemsSubs.unsubscribe();
