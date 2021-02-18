@@ -12,12 +12,9 @@ import { dashboardRoutes } from './dashboard/dashboard.routes';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {
-    path: '',
-    component: DashboardComponent,
-    children: dashboardRoutes,
-    canActivate: [AuthGuardService]
-  },
+  { 
+    path: '', 
+    loadChildren: './income-expense/income-expense.module#IncomeExpenseModule' }, // Lazyload
   { path: '**', redirectTo: '' }
 ];
 

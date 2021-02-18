@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 import { AppState } from '../app.reducer';
 import { ActivateLoadingAction, DeactivateLoadingAction } from '../shared/ui.actions';
-import { SetUserAction } from './auth.actions';
+import { SetUserAction, UnsetUserAction } from './auth.actions';
 import { User } from './user.model';
 
 @Injectable({
@@ -92,6 +92,7 @@ export class AuthService {
   logout(): void {
     this.router.navigate(['/login']);
     this.afAuth.signOut();
+    this.store.dispatch(new UnsetUserAction());
   }
 
   isLoggedIn() {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { ChartType } from 'chart.js';
 import { SingleDataSet, Label } from 'ng2-charts';
 
 import { AppState } from '../../app.reducer';

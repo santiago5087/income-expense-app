@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs/operators';
 
 import { AppState } from '../app.reducer';
 import { AuthService } from '../auth/auth.service';
-import { SetItemsAction } from './income-expense.actions';
+import { SetItemsAction, UnsetItemsAction } from './income-expense.actions';
 import { IncomeExpense } from './IncomeExpense.model';
 
 @Injectable({
@@ -34,12 +34,10 @@ export class IncomeExpenseService {
       .snapshotChanges()
       .pipe(map(docData => {
         return docData.map(doc => {
+          let item = { ...doc.payload.doc.data() as Object }
+          item['uid'] = doc.payload.doc.id;
           
-          return {
-            uid: doc.payload.doc.id,
-            ...doc.payload.doc.data() as Object
-          }
-
+          return item;
         });
       }))
       .subscribe((collection: any) => {
@@ -64,6 +62,7 @@ export class IncomeExpenseService {
   cancelSubscriptions() {
     this.incomeExpenseListenerSubs.unsubscribe();
     this.incomeExpenseItemsSubs.unsubscribe();
+    this.store.dispatch(new UnsetItemsAction());
   }
 
 }
