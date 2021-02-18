@@ -15,6 +15,9 @@ import { DashboardRoutingModule } from '../dashboard/dashboard-routing.module';
 // Graphics
 import { ChartsModule } from 'ng2-charts';
 
+import { StoreModule } from '@ngrx/store'
+import { incomeExpenseReducer } from './income-expense.reducer';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -28,7 +31,8 @@ import { ChartsModule } from 'ng2-charts';
     ReactiveFormsModule,
     ChartsModule,
     SharedModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    StoreModule.forFeature('incomeExpense', incomeExpenseReducer)
   ]
 })
 export class IncomeExpenseModule { }

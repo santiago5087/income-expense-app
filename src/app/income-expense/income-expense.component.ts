@@ -4,7 +4,8 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 
-import { AppState } from '../app.reducer';
+// import { AppState } from '../app.reducer';
+import { InExAppState } from './income-expense.reducer'
 import { ActivateLoadingAction, DeactivateLoadingAction } from '../shared/ui.actions';
 import { IncomeExpenseService } from './income-expense.service';
 import { IncomeExpense } from './IncomeExpense.model';
@@ -23,7 +24,7 @@ export class IncomeExpenseComponent implements OnInit, OnDestroy {
   loading: boolean;
 
   constructor(private incomeExpenseService: IncomeExpenseService,
-              private store: Store<AppState>) { }
+              private store: Store<InExAppState>) { }
 
   ngOnInit(): void {
     this.addIncomeExpenseForm = new FormGroup({

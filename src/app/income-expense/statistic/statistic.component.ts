@@ -3,7 +3,8 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { SingleDataSet, Label } from 'ng2-charts';
 
-import { AppState } from '../../app.reducer';
+// import { AppState } from '../../app.reducer';
+import { InExAppState } from '../income-expense.reducer';
 import { IncomeExpense } from '../IncomeExpense.model';
 
 @Component({
@@ -22,7 +23,7 @@ export class StatisticComponent implements OnInit {
   public doughnutChartLabels: Label = ['Incomes', 'Expenses'];
   public doughnutChartData: SingleDataSet = [];
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<InExAppState>) { }
 
   ngOnInit(): void {
     this.subscription = this.store.select('incomeExpense')
