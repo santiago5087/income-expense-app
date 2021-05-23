@@ -16,6 +16,7 @@ export class AuthGuardService implements CanActivate, CanLoad {
   }
 
   canLoad() {
+    // Toma una emisión y cancela la suscripción
     return this.authService.isLoggedIn().pipe(take(1));
   }
 

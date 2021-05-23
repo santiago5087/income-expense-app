@@ -11,6 +11,7 @@ const initState: IncomeExpenseState = {
   items: []
 }
 
+// Para esconder el estado del incomeExpense
 export interface InExAppState extends AppState {
   incomeExpense: IncomeExpenseState;
 }
