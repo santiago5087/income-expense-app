@@ -17,6 +17,7 @@ import { ChartsModule } from 'ng2-charts';
 
 import { StoreModule } from '@ngrx/store'
 import { incomeExpenseReducer } from './income-expense.reducer';
+import { TopUsersComponent } from './top-users/top-users.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { incomeExpenseReducer } from './income-expense.reducer';
     StatisticComponent,
     IncomeExpenseComponent,
     DetailComponent,
-    OrderIncomeExpensePipe
+    OrderIncomeExpensePipe,
+    TopUsersComponent
   ],
   imports: [
     CommonModule,
