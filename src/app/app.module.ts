@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 // Modules
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 // Custom modules
 import { AuthModule } from './auth/auth.module';
@@ -28,6 +29,7 @@ import { IncomeExpenseModule } from './income-expense/income-expense.module';
   imports: [
     BrowserModule,
     AuthModule,
+    HttpClientModule,
     AppRoutingModule,
     IncomeExpenseModule,
     AngularFirestoreModule,

@@ -45,7 +45,7 @@ export class AuthService {
     });
   }
 
-  createUser(email: string, name: string, password: string): void {
+  createUser(email: string, name: string, password: string, avatar: string): void {
     this.store.dispatch(new ActivateLoadingAction());
 
     this.afAuth.createUserWithEmailAndPassword(email, password)
@@ -54,8 +54,9 @@ export class AuthService {
         
         const user: User = {
           uid: newUser.user.uid,
-          name: name,
-          email: newUser.user.email
+          name,
+          email: newUser.user.email,
+          avatar
         } 
 
         this.afDB.doc(`${ user.uid }/user`).set(user)

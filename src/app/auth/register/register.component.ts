@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(data: any) {
-    this.authService.createUser(data.email, data.name, data.password);
+    this.authService.createUser(data.email, data.name, data.password, data.avatar);
   }
 
 }

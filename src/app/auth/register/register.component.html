@@ -55,6 +55,22 @@
             </div>
 
             <div class="form-group">
+              <div class="input-group">
+                <input  type="text" 
+                        class="form-control" 
+                        placeholder="Avatar"
+                        ngModel
+                        name="avatar"
+                        required>
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i class="fa fa-check-circle"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
               <button *ngIf="!loading" class="btn btn-primary submit-btn btn-block"
                       [disabled]="registerForm.invalid">
                 Create user
