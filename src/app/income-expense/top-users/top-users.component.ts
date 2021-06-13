@@ -15,6 +15,8 @@ export class TopUsersComponent implements OnInit, OnDestroy {
 
   users: UserTop[];
   subscription: Subscription;
+  loading: boolean;
+  error: any;
 
   constructor(private store: Store<incomeExpenseModuleState>) { }
 
@@ -23,6 +25,8 @@ export class TopUsersComponent implements OnInit, OnDestroy {
       .subscribe(topUsers => {
         console.log(topUsers)
         this.users = topUsers.topUsers;
+        this.loading = topUsers.loading;
+        this.error = topUsers.error;
       });
     this.store.dispatch(LOAD_TOPUSERS());
   }

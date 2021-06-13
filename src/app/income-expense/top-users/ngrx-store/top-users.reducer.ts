@@ -21,7 +21,8 @@ const _topUsersReducer = createReducer<TopUsersState>(
   initState,
   on(LOAD_TOPUSERS, (state) => ({ 
     ...state, 
-    loading: true 
+    loading: true,
+    error: null
   })),
   on(LOAD_TOPUSERS_SUCCESS, (state, { topUsers }) => ({
     ...state,

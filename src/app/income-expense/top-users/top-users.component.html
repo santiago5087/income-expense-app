@@ -1,4 +1,25 @@
-<div class="card-columns">
+<div *ngIf="loading" class="row">
+  <div class="col">
+    <div class="alert alert-info text-center">
+      <div class="fa fa-sync fa-spin fa-2x"></div>
+      <h2>Wait...</h2>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="error" class="row">
+  <div class="col">
+    <div class="alert alert-danger text-center">
+      <div class="fa fa-times fa-2x"></div>
+      <h2>Error: {{ error.status }}</h2>
+      <p>{{ error.message }}</p>
+      <br>
+      {{ error.url }}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading" class="card-columns">
   <div class="card" *ngFor="let user of users; index as i">
     <h4 class="card-title">#{{ i+1 }}</h4>
     <img [src]="user.avatar" class="card-img-top">
