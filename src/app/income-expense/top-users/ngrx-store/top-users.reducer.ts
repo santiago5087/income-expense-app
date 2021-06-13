@@ -33,7 +33,11 @@ const _topUsersReducer = createReducer<TopUsersState>(
     ...state,
     loaded: false,
     loading: false,
-    error: payload 
+    error: {
+      status: payload.status,
+      message: payload.message,
+      url: payload.url
+    }
   }))
 );
 

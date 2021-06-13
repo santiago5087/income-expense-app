@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { mergeMap, map, exhaustMap } from 'rxjs/operators'
+import { mergeMap, map, catchError } from 'rxjs/operators'
 
-import { LOAD_TOPUSERS, LOAD_TOPUSERS_SUCCESS } from './top-users.actions';
-import { UserService } from '../../../services/userTop.service';
+import { LOAD_TOPUSERS, LOAD_TOPUSERS_FAIL, LOAD_TOPUSERS_SUCCESS } from './top-users.actions';
+import { UserService } from '../services/userTop.service';
+import { of } from "rxjs";
 
 @Injectable()
 export class TopUsersEffects {
@@ -19,12 +20,13 @@ export class TopUsersEffects {
 
   loadTopUsers$ = createEffect(() => this.actions$.pipe(
     ofType(LOAD_TOPUSERS),  // Se recibe la action del tipo seleccionado y se pasa al mergeMap
-    exhaustMap(action => {
+    mergeMap(action => {
       return this.topUserService.getTopUsers()
       .pipe(
         // Se dispara la acción de top users success cuando se obtienen los usuarios
         // Para evitar que se dispare otra acción se pasa el dispatch: false
-        map(topUsers => LOAD_TOPUSERS_SUCCESS({ topUsers }))
+        map(topUsers => LOAD_TOPUSERS_SUCCESS({ topUsers })),
+        catchError(err => of(LOAD_TOPUSERS_FAIL({ payload: err })))
       )})
     ));
 
