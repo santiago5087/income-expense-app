@@ -41,6 +41,7 @@ export class AuthService {
       } else {
         this.user = null;
         this.userSubscription.unsubscribe();
+        this.logout();
       }
     });
   }

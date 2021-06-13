@@ -1,6 +1,5 @@
 import * as fromIncomeExpense from './income-expense.actions';
-import { IncomeExpense } from './IncomeExpense.model'
-import { AppState } from '../app.reducer';
+import { IncomeExpense } from '../models/IncomeExpense.model'
 
 // Apariencia del estado
 export interface IncomeExpenseState {
@@ -9,11 +8,6 @@ export interface IncomeExpenseState {
 
 const initState: IncomeExpenseState = {
   items: []
-}
-
-// Para esconder el estado del incomeExpense
-export interface InExAppState extends AppState {
-  incomeExpense: IncomeExpenseState;
 }
 
 export function incomeExpenseReducer(state=initState, 

@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { UserTop } from '../../models/userTop.model';
-import { UserService } from '../../services/userTop.service';
+import { incomeExpenseModuleState } from '../income-expense.module';
+import { LOAD_TOPUSERS } from './ngrx-store/top-users.actions';
 
 @Component({
   selector: 'app-top-users',
@@ -14,13 +16,15 @@ export class TopUsersComponent implements OnInit, OnDestroy {
   users: UserTop[];
   subscription: Subscription;
 
-  constructor(private userService: UserService) { }
+  constructor(private store: Store<incomeExpenseModuleState>) { }
 
   ngOnInit(): void {
-    this.subscription = this.userService.getTopUsers().subscribe(users => {
-      console.log('USERS', users);
-      this.users = users;
-    });
+    this.subscription = this.store.select('topUsers')
+      .subscribe(topUsers => {
+        console.log(topUsers)
+        this.users = topUsers.topUsers;
+      });
+    this.store.dispatch(LOAD_TOPUSERS());
   }
 
   ngOnDestroy(): void {

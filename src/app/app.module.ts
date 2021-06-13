@@ -13,7 +13,8 @@ import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './app.reducer';
-
+import { EffectsModule } from '@ngrx/effects';
+import { TopUsersEffects } from './income-expense/top-users/ngrx-store/top-users.effects';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -38,7 +39,8 @@ import { IncomeExpenseModule } from './income-expense/income-expense.module';
     StoreDevtoolsModule.instrument({ 
       maxAge: 25, 
       logOnly: environment.production 
-    })
+    }),
+    EffectsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

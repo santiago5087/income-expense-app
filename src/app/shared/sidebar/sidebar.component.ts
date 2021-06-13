@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { IncomeExpenseService } from 'src/app/income-expense/income-expense.service';
+import { IncomeExpenseService } from 'src/app/income-expense/income-expense/income-expense.service';
 
 
 import { AppState } from '../../app.reducer';

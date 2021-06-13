@@ -3,9 +3,8 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { SingleDataSet, Label } from 'ng2-charts';
 
-// import { AppState } from '../../app.reducer';
-import { InExAppState } from '../income-expense.reducer';
-import { IncomeExpense } from '../IncomeExpense.model';
+import { incomeExpenseModuleState } from '../income-expense.module';
+import { IncomeExpense } from '../income-expense/models/IncomeExpense.model';
 
 @Component({
   selector: 'app-statistic',
@@ -23,12 +22,12 @@ export class StatisticComponent implements OnInit {
   public doughnutChartLabels: Label = ['Incomes', 'Expenses'];
   public doughnutChartData: SingleDataSet = [];
 
-  constructor(private store: Store<InExAppState>) { }
+  constructor(private store: Store<incomeExpenseModuleState>) { }
 
   ngOnInit(): void {
     this.subscription = this.store.select('incomeExpense')
-      .subscribe(incomeExpense => {
-        this.countIncomeExpense(incomeExpense.items);
+      .subscribe(ie => {
+        this.countIncomeExpense(ie.items);
       });
   }
 

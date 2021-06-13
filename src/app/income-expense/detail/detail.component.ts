@@ -3,10 +3,9 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 
-// import { AppState } from '../../app.reducer';
-import { InExAppState } from '../income-expense.reducer';
-import { IncomeExpenseService } from '../income-expense.service';
-import { IncomeExpense } from '../IncomeExpense.model';
+import { incomeExpenseModuleState } from '../income-expense.module';
+import { IncomeExpenseService } from '../income-expense/income-expense.service';
+import { IncomeExpense } from '../income-expense/models/IncomeExpense.model';
 
 @Component({
   selector: 'app-detail',
@@ -19,7 +18,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   items: IncomeExpense[];
   subscription: Subscription = new Subscription();
 
-  constructor(private store: Store<InExAppState>,
+  constructor(private store: Store<incomeExpenseModuleState>,
               private incomeExpenseService: IncomeExpenseService) { }
 
   ngOnInit(): void {

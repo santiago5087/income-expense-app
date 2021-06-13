@@ -4,10 +4,10 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 
-import { AppState } from '../app.reducer';
-import { ActivateLoadingAction, DeactivateLoadingAction } from '../shared/ui.actions';
+import { AppState } from '../../app.reducer';
+import { ActivateLoadingAction, DeactivateLoadingAction } from '../../shared/ui.actions';
 import { IncomeExpenseService } from './income-expense.service';
-import { IncomeExpense } from './IncomeExpense.model';
+import { IncomeExpense } from './models/IncomeExpense.model';
 
 @Component({
   selector: 'app-income-expense',

@@ -4,10 +4,10 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
-import { AppState } from '../app.reducer';
-import { AuthService } from '../auth/auth.service';
-import { SetItemsAction, UnsetItemsAction } from './income-expense.actions';
-import { IncomeExpense } from './IncomeExpense.model';
+import { AppState } from '../../app.reducer';
+import { AuthService } from '../../auth/auth.service';
+import { SetItemsAction, UnsetItemsAction } from './ngrx-store/income-expense.actions';
+import { IncomeExpense } from './models/IncomeExpense.model';
 
 @Injectable({
   providedIn: 'root'
