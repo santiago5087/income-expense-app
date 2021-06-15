@@ -16,6 +16,7 @@ import { AuthService } from '../../auth/auth.service';
 export class SidebarComponent implements OnInit, OnDestroy {
 
   username: string;
+  avatar: string;
   subscription: Subscription;
 
   constructor(public authService: AuthService,
@@ -26,9 +27,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.subscription = this.store.select('auth')
       .pipe(
         filter(auth => auth.user != null),
-        map(auth => auth.user.name)
+        map(auth => auth.user)
       )
-      .subscribe(name => this.username = name);
+      .subscribe(user => {
+        this.username = user.name;
+        this.avatar = user.avatar;
+      });
   }
 
   ngOnDestroy(): void {
