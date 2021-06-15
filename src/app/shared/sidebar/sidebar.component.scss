@@ -3,7 +3,11 @@
   justify-content: center;
 }
 
-@media (max-width: 415px) {
+@media (max-width: 660px) {
+  .sidebar {
+    width: 100px;
+  }
+
   .nav-item {
     width: 80px;
   }

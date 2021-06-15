@@ -9,8 +9,7 @@ import { IncomeExpense } from '../income-expense/models/IncomeExpense.model';
 @Component({
   selector: 'app-statistic',
   templateUrl: './statistic.component.html',
-  styles: [
-  ]
+  styleUrls: ['./statistic.component.scss']
 })
 export class StatisticComponent implements OnInit {
 
