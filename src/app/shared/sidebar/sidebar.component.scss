@@ -1,0 +1,19 @@
+.user-wrapper {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 415px) {
+  .nav-item {
+    width: 80px;
+  }
+
+  .menu-title {
+    display: none !important;
+  }
+
+  .user-wrapper .text-wrapper {
+    margin-top: 10px;
+  }
+}
+

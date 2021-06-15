@@ -2,26 +2,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // Modules
-import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-
-// Custom modules
+import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
-// import { IncomeExpenseModule } from './income-expense/income-expense.module';
+import { IncomeExpenseModule } from './income-expense/income-expense.module';
 
 // NGRX
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { appReducers } from './app.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { TopUsersEffects } from './income-expense/top-users/ngrx-store/top-users.effects';
+import { appReducers } from './app.reducer';
+
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { IncomeExpenseModule } from './income-expense/income-expense.module';
 
 @NgModule({
   declarations: [
